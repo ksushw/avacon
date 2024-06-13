@@ -53,7 +53,7 @@ onMounted(async () => {
 
 const hapticFeedback = useWebAppHapticFeedback()
 const hap = () => {
-  hapticFeedback.impactOccurred('heavy')
+  hapticFeedback.notificationOccurred('success')
 }
 </script>
 
