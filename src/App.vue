@@ -9,7 +9,6 @@ import DesktopBlocker from '@/components/DesktopBlocker.vue'
 import MainLoader from '@/components/MainLoader.vue'
 import TechnicalWorkBanner from '@/components/blockers/TechnicalWorkBanner.vue'
 import { touchInit } from '@/utils/touch'
-import { useWebAppHapticFeedback } from 'vue-tg'
 
 const theme = useWebAppTheme()
 const viewport = useWebAppViewport()
@@ -50,16 +49,11 @@ onMounted(async () => {
   })
   touchInit()
 })
-
-const hapticFeedback = useWebAppHapticFeedback()
-const hap = () => {
-  hapticFeedback.notificationOccurred('success')
-}
 </script>
 
 <template>
   <!--  {{ webApp.initData }}-->
-  <main v-if="true" @click="hap">
+  <main v-if="true">
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
