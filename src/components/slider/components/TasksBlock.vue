@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import AvaButton from '@/components/AvaButton.vue'
 import router from '@/router'
-import { useWebAppHapticFeedback } from 'vue-tg'
-
-const hapticFeedback = useWebAppHapticFeedback()
-const onVibration = () => {
-  hapticFeedback.notificationOccurred('success')
-}
 </script>
 
 <template>
@@ -30,16 +24,7 @@ const onVibration = () => {
         alt="img"
       />
     </div>
-    <AvaButton
-      block
-      @click="
-        () => {
-          onVibration()
-          router.push('/tasks')
-        }
-      "
-      >Go tasks</AvaButton
-    >
+    <AvaButton block @click="router.push('/tasks')" vibrationType="success">Go tasks</AvaButton>
   </div>
 </template>
 

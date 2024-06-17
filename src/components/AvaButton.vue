@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ButtonType } from '@/types/props'
+import { useWebAppHapticFeedback } from 'vue-tg'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     fixed?: boolean
     block?: boolean
@@ -10,18 +11,26 @@ withDefaults(
     type?: ButtonType
     loading?: boolean
     size?: 'xs'
+    vibrationType?: 'error' | 'success' | 'warning'
   }>(),
   {
     type: 'primary',
     disabled: false
   }
 )
+
+const hapticFeedback = useWebAppHapticFeedback()
+
+const vibrate = () => {
+  if (props.vibrationType) hapticFeedback.notificationOccurred(props.vibrationType)
+}
 </script>
 
 <template>
   <button
     :class="['ava-button', type, size, { fixed, block, small }]"
     :disabled="disabled || loading"
+    @click="vibrate"
   >
     <slot></slot>
     <i v-if="loading" class="spinner" />
