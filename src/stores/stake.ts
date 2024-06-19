@@ -57,7 +57,7 @@ export const useStake = defineStore('stake', () => {
 
   async function removeStake(sum:number) {
     try {
-      const url = '/api/stake/withdrawal/'
+      const url = '/stake/withdrawal/'
       await useAxios(url, {
         method: 'POST',
         data: {sum}
