@@ -38,8 +38,8 @@ async function stakeHandle() {
   loading.value = false
 }
 
-function toggleBottomDriver(value: boolean) {
-  isOpen.value = value
+function toggleBottomDriver() {
+  isOpen.value = !isOpen.value
 }
 
 function toggleModal() {
@@ -50,7 +50,7 @@ function onCloseModal(id: string) {
   if (id === 'remove' && stake.my?.sum) {
     stake.removeStake(stake.my.sum);
   }
-  toggleBottomDriver(false);
+  toggleBottomDriver();
   toggleModal()
 }
 </script>
@@ -86,7 +86,7 @@ function onCloseModal(id: string) {
         </div>
       </div>
     </AvaCard>
-    <p class="stacking__remove-button" @click="() => toggleBottomDriver(true)">
+    <p class="stacking__remove-button" @click="() => toggleBottomDriver()">
       Remove AVA from staking
     </p>
     <div class="stacking__header mt-24">Staking statistics</div>
@@ -171,7 +171,7 @@ function onCloseModal(id: string) {
       </AvaButton>
     </AvaCard>
 
-    <AvaBottomDrawer v-model="isOpen" class="market-drawer drawer" @close="() => toggleBottomDriver(false)">
+    <AvaBottomDrawer v-model="isOpen" class="market-drawer drawer" @close="toggleBottomDriver">
       <div class="drawer__title">Remove AvaCoin from staking</div>
       <AvaCard bg-color="#FFFFFF" class="mb-8">
         <div class="stacking__card-info">
