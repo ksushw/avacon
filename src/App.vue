@@ -9,6 +9,7 @@ import DesktopBlocker from '@/components/DesktopBlocker.vue'
 import MainLoader from '@/components/MainLoader.vue'
 import TechnicalWorkBanner from '@/components/blockers/TechnicalWorkBanner.vue'
 import { touchInit } from '@/utils/touch'
+import type { text } from 'stream/consumers'
 
 const theme = useWebAppTheme()
 const viewport = useWebAppViewport()
@@ -57,6 +58,8 @@ const test = () => {
   popupTgObject.showAlert('ghjukiop', () => console.log(1))
   
 }
+
+const arrBut = [{type: 'cancel'}, {type: "default"}]
 </script>
 
 <template>
@@ -65,7 +68,8 @@ const test = () => {
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
-    <Popup message="Hello" @close="true" class="popup" />
+    <Popup title="Are you sure?" message="Your AVAcoins will returned to
+your balance" :buttons="arrBut" @close="true" />
   </main>
   <DesktopBlocker v-else />
 
