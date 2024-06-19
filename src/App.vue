@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton } from 'vue-tg'
+import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton, useWebAppPopup } from 'vue-tg'
 import { useRootStore } from '@/stores/root'
 import { useNotificationStore } from '@/stores/notification'
 import { useAxios } from '@/composables/useAxios'
@@ -49,11 +49,18 @@ onMounted(async () => {
   })
   touchInit()
 })
+
+
+const popupTgObject = useWebAppPopup()
+const test = () => {
+  popupTgObject.showPopup('ghjukiop')
+  console.log('clicked')
+}
 </script>
 
 <template>
   <!--  {{ webApp.initData }}-->
-  <main v-if="true">
+  <main v-if="true" @click="popupTgObject.showPopup">
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
