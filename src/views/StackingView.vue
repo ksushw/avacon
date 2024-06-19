@@ -46,7 +46,7 @@ function toggleModal () {
 }
 
 function onCloseModal() {
-
+ stake.removeStake(32)
 }
 </script>
 

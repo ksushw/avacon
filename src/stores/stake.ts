@@ -55,6 +55,28 @@ export const useStake = defineStore('stake', () => {
     }
   }
 
+  async function removeStake(sum: number) {
+    // try {
+    //   const url = '/api/stake/withdrawal/'
+    //   await useAxios(url, {
+    //     method: 'POST',
+    //     data: {sum}
+    //   })
+      noty.push({
+        type: 'info',
+        message: 'Succesfuly returned'
+      })
+
+    //   await Promise.all([
+    //     getMyStaking(),
+    //     getTodayStaking(),
+    //     root.fetchUser()
+    //   ])
+    // } catch (e) {
+    //   console.log(e)
+    // }
+  }
+
   async function takeStake() {
     try {
      await useAxios<IMyStaking>('/stake/take/', {
@@ -69,6 +91,7 @@ export const useStake = defineStore('stake', () => {
     getMyStaking,
     getTodayStaking,
     stake,
+    removeStake,
     takeStake,
     hasStaking,
     my,
