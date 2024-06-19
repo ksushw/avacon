@@ -221,7 +221,7 @@ function onCloseModal(id: string) {
         </div>
       </AvaCard>
       <AvaCard bg-color="#FFFFFF" class="mb-8">
-        <AvaButton class="drawer__button" type="warning" @click="toggleModal"
+        <AvaButton class="drawer__button" type="warning" vibration-type="warning" @click="toggleModal"
           >Remove AVAcoin</AvaButton
         >
       </AvaCard>
