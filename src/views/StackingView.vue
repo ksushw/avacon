@@ -21,8 +21,9 @@ const stake = useStake()
 const root = useRootStore()
 
 const popupButtons = [
+{ type: 'default', id: 'cancel', text: 'Cancel' },
   { type: 'default', id: 'remove', text: 'Remove' },
-  { type: 'default', id: 'cancel', text: 'Cancel' }
+ 
 ]
 
 
