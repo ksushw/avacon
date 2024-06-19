@@ -42,7 +42,7 @@ function toggleBottomDriver(value: boolean) {
 }
 
 function toggleModal () {
-  isPopupOpened.value = true
+  isPopupOpened.value = !isPopupOpened.value;
 }
 
 function onCloseModal() {
