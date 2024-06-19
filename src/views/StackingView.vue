@@ -228,8 +228,8 @@ function onCloseModal() {
         message="Your AVAcoins will returned to
 your balance"
         :buttons="popupButtons"
-        @close="true"
-        @popupClosed="onCloseModal"
+        @close="onCloseModal"
+        @popupClosed="isPopupOpened"
       />
     </AvaBottomDrawer>
   </div>
