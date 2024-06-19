@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BackButton, useWebAppPopup, Popup } from 'vue-tg'
+import { BackButton, useWebAppPopup } from 'vue-tg'
 import { useRouter } from 'vue-router'
 import AvaCard from '@/components/AvaCard.vue'
 import AvaInput from '@/components/form/AvaInput.vue'
@@ -21,9 +21,8 @@ const stake = useStake()
 const root = useRootStore()
 
 const popupButtons = [
-{ type: 'cancel', id: 'cancel', text: 'Cancel' },
-  { type: 'default', id: 'remove', text: 'Remove' }
-  
+  { type: 'default', id: 'remove', text: 'Remove' },
+  { type: 'cancel', id: 'cancel', text: 'Cancel' }
 ]
 
 
@@ -43,12 +42,12 @@ function toggleBottomDriver(value: boolean) {
 }
 
 function toggleModal () {
-  isPopupOpened.value = !isPopupOpened.value;
+  isPopupOpened.value = !isPopupOpened.value
 }
 
 function onCloseModal(id: string) {
-  if(id === 'remove') {
-    stake.removeStake()
+  if(id === 'remove' && stake.my?.sum) {
+    stake.removeStake(stake.my.sum)
   }
 }
 </script>
@@ -231,8 +230,8 @@ function onCloseModal(id: string) {
         message="Your AVAcoins will returned to
 your balance"
         :buttons="popupButtons"
-        @close="onCloseModal"
         v-if="isPopupOpened"
+        @close="onCloseModal"
       />
     </AvaBottomDrawer>
   </div>

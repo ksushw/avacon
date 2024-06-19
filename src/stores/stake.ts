@@ -55,12 +55,12 @@ export const useStake = defineStore('stake', () => {
     }
   }
 
-  async function removeStake() {
+  async function removeStake(sum:number) {
     // try {
     //   const url = '/api/stake/withdrawal/'
     //   await useAxios(url, {
     //     method: 'POST',
-    //     data: {my.sum}
+    //     data: {sum}
     //   })
       noty.push({
         type: 'info',
