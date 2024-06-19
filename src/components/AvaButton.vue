@@ -49,7 +49,7 @@ const vibrate = () => {
   color: var(--pink-color);
   background: var(--button-base-background);
   &.xs {
-    padding: 8px 20px;
+    padding: 8px 0;
     font-weight: 400;
     border-radius: 12px;
   }
@@ -94,6 +94,10 @@ const vibrate = () => {
   &.warning {
     background: var(--button-warning-background);
     color: var(--main-text-color);
+  }
+  &.white {
+    background: var(--main-text-color);
+    color: var(--body-background);
   }
   &.primary {
     background: var(--button-primary-background);

@@ -8,7 +8,7 @@
         <img src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/apps-icons.png" alt="apps">
       </div>
     </div>
-    <AvaButton block @click="router.push('/apps')">Go Apps</AvaButton>
+    <AvaButton block vibrationType="success" @click="router.push('/apps')">Go Apps</AvaButton>
   </div>
 </template>
 <script setup lang="ts">

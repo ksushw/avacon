@@ -28,6 +28,7 @@ export interface IApp {
   gamers_count: number
   is_verified: boolean
   is_listed: boolean
+  is_ad: boolean
   with_drop: boolean
   created_at: boolean
   socials: IAppSocial[]

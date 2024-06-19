@@ -76,6 +76,7 @@ async function save() {
       fixed
       :disabled="!form.url"
       :loading="loading"
+      vibrationType="success"
       @click="save"
     >
       Send

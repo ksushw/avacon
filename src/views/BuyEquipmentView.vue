@@ -81,6 +81,7 @@ onMounted(async() => {
         v-else
         block
         type="warning"
+        vibrationType="success"
         @click="buyEquipment"
     >
       Buy equipment and start earn - {{ currentInvest.price?.toLocaleString('en-EN') ?? 0 }} AvaCoin

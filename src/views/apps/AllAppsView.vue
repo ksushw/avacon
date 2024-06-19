@@ -61,7 +61,7 @@ function scrollHandle(e: Event) {
       <img class="star3" src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/icons/whie-star.svg" alt="star">
     </router-link>
 
-    <AvaCard v-if="apps.loading" :loading="apps.loading" style="height: 300px" />
+    <AvaCard v-if="apps.loading && !apps.apps?.length" :loading="apps.loading" style="height: 300px" />
     <div v-else class="list">
       <div class="title">
         TAPP’s ({{ route.query?.count }})

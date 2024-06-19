@@ -89,6 +89,7 @@ async function sendCode() {
       block
       type="primary"
       :disabled="!email"
+      vibrationType="success"
       @click="sendCode"
     >
       Save

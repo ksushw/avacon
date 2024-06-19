@@ -55,6 +55,7 @@ const close = () => {
     min-height: 300px;
     max-height: 90vh;
     overflow: scroll;
+    background: #F0EFF5;
   }
   &__close {
     position: absolute;

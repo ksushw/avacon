@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import type { IApp } from '@/types/apps'
-import { formatNumber } from '@/utils'
+import { formatNumber } from '@/utils/formatNumber'
 import { useWebAppNavigation } from 'vue-tg'
 import { computed } from 'vue'
 
@@ -28,6 +28,7 @@ async function clickHandler() {
 
 <template>
  <div :class="['app-card', {full}]" @click="clickHandler">
+   <span v-if="app.is_ad" class="glare"></span>
    <div class="arrow">
      <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
        <path d="M1 1.48975L5 5.48975L1 9.48975" stroke="white" stroke-width="1.5"/>
@@ -40,7 +41,13 @@ async function clickHandler() {
    </div>
 
    <div class="content">
-      <div class="name">{{ app.name }}</div>
+      <div class="content__header">
+        <div class="name">{{ app.name }}</div>
+        <div v-if="app.is_ad" class="top-app">
+          <img src="@/assets/images/icons/fire.svg" alt="fire">
+          TOP APP
+        </div>
+      </div>
 
      <div class="top light-color text-12">
        <div>
@@ -78,6 +85,8 @@ async function clickHandler() {
   text-align: left;
   min-height: 100px;
   box-sizing: border-box;
+  overflow: hidden;
+
   &.full {
     width: 100%;
     box-sizing: border-box;
@@ -112,6 +121,12 @@ async function clickHandler() {
   }
   .content {
     padding-right: 20px;
+
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
     .top {
       gap: 12px;
       display: grid;
@@ -125,10 +140,41 @@ async function clickHandler() {
       font-weight: 600;
       margin-bottom: 12px;
     }
+
+    .top-app {
+      font-size: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+      background: #D92020;
+      border-radius: 17px;
+      padding: 5px;
+    }
   }
   .social-img {
     width: 16px;
     padding-right: 5px;
+  }
+}
+
+.glare {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  transform: skewX(-45deg);
+  left: -150%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.4));
+  animation: flareAnimation 3s infinite linear;
+}
+
+@keyframes flareAnimation {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
   }
 }
 </style>

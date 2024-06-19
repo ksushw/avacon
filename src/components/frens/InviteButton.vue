@@ -26,6 +26,8 @@ function copy() {
 
 <template>
   <section>
-    <AvaButton block :fixed="fixed" :type="type" @click="copy"> Invite a fren </AvaButton>
+    <AvaButton block :fixed="fixed" :type="type" vibrationType="success" @click="copy">
+      Invite a fren
+    </AvaButton>
   </section>
 </template>

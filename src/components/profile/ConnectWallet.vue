@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
       <span style="color: #007AFF" @click="disconnect()">Disconnect</span>
     </div>
 
-    <AvaButton v-else block @click="connect">
+    <AvaButton v-else block vibrationType="success" @click="connect">
       Connect TON wallet
     </AvaButton>
     <div id="root-id"></div>

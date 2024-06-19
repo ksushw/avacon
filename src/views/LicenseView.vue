@@ -93,6 +93,7 @@ onMounted(async() => {
     <AvaButton
         block
         type="primary"
+        vibrationType="success"
         @click="openHistory"
     >
       Let’s start

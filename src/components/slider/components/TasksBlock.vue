@@ -1,41 +1,30 @@
-<script setup lang="ts">
-import AvaButton from '@/components/AvaButton.vue'
-import router from '@/router'
-</script>
-
 <template>
   <div class="tasks">
     <div class="tasks__item">
       <div class="tasks__item__laptop">
-        <img
-          src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/laptop.png"
-          alt="laptop"
-        />
+        <img src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/laptop.png" alt="laptop">
       </div>
-      <div />
+      <div/>
       <div class="tasks__item__info">
         <div class="title">AVA TASKS</div>
         <div class="subtitle">You have last chance to get more AVA tokens before listing</div>
       </div>
     </div>
     <div class="tasks__item__img">
-      <img
-        src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/tasks-img.png"
-        alt="img"
-      />
+      <img src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/tasks-img.png" alt="img">
     </div>
-    <AvaButton block @click="router.push('/tasks')" vibrationType="success">Go tasks</AvaButton>
+    <AvaButton block vibrationType="success" @click="router.push('/tasks')">Go tasks</AvaButton>
   </div>
 </template>
+<script setup lang="ts">
+import AvaButton from '@/components/AvaButton.vue';
+import router from '@/router';
+</script>
 
 <style lang="scss" scoped>
 .tasks {
   width: calc(100vw - 32px);
-  background: linear-gradient(
-    245.31deg,
-    rgba(255, 255, 255, 0.8) 37.88%,
-    rgba(255, 255, 255, 0.48) 118.16%
-  );
+  background: linear-gradient(245.31deg, rgba(255, 255, 255, 0.8) 37.88%, rgba(255, 255, 255, 0.48) 118.16%);
   padding: 16px 22px;
   border-radius: 24px;
   max-height: 250px;
@@ -61,6 +50,7 @@ import router from '@/router'
       font-size: 20px;
       font-weight: 600;
       line-height: 24.2px;
+      text-align: start;
       color: #000000;
       margin-bottom: 10px;
     }
@@ -74,7 +64,7 @@ import router from '@/router'
       color: #515151;
     }
 
-    &__img img {
+    &__img img{
       width: calc(100% + 20px);
       padding: 12px 0;
     }

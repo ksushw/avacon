@@ -84,6 +84,7 @@ function openTg() {
       type="primary"
       :loading="channelLoading"
       :disabled="root.user?.is_channel_verified || isDisabledCheckButton"
+      vibrationType="success"
       @click="checkSubscribe"
     >
       {{ isDisabledCheckButton ? `${disableCounter}...` : 'Check subscription' }}

@@ -104,6 +104,7 @@ onMounted(async() => {
         <AvaButton
             block
             type="primary"
+            vibrationType="success"
             @click="returnToPlots"
         >
           Return to plots

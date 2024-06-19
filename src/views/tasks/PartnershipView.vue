@@ -81,6 +81,7 @@ async function save() {
       fixed
       :disabled="!form.url || !form.description || !form.contact_url"
       :loading="loading"
+      vibrationType="success"
       @click="save"
     >
       Send

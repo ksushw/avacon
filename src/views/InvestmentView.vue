@@ -81,6 +81,7 @@ onMounted(async () => {
         :disabled="Number(root.user?.tokens) < currentInvest.invest_license?.price"
         block
         type="primary"
+        vibrationType="success"
         @click="buyLicense"
     >
       Buy licence - {{ currentInvest.invest_license?.price?.toLocaleString('en-EN') ?? 0  }} AVA
