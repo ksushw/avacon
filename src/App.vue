@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton, useWebAppPopup } from 'vue-tg'
+import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton, useWebAppPopup, Popup } from 'vue-tg'
 import { useRootStore } from '@/stores/root'
 import { useNotificationStore } from '@/stores/notification'
 import { useAxios } from '@/composables/useAxios'
