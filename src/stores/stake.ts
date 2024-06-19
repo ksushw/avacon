@@ -74,7 +74,7 @@ export const useStake = defineStore('stake', () => {
     } catch (e) {
       console.log(e)
       noty.push({
-        type: 'warning',
+        type: 'danger',
         message: 'Can not remove'
       })
     }
