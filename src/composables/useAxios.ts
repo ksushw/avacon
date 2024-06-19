@@ -6,7 +6,7 @@ export async function useAxios<T>(url: string, options: AxiosRequestConfig = {})
 
   const webApp = useWebApp()
   const router = useRouter()
-\
+
   let token = webApp.initData
   if (import.meta.env?.VITE_INIT_DATA) {
     token = import.meta.env?.VITE_INIT_DATA
