@@ -53,7 +53,7 @@ onMounted(async () => {
 
 const popupTgObject = useWebAppPopup()
 const test = () => {
-  popupTgObject.showPopup('ghjukiop')
+  popupTgObject.showConfirm('ghjukiop')
   console.log('clicked')
 }
 </script>
