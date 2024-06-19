@@ -22,7 +22,7 @@ const root = useRootStore()
 
 const popupButtons = [
   { type: 'default', id: 'remove', text: 'Remove' },
-  { type: 'cancel', id: 'cancel', text: 'Cancel' }
+  { type: 'default', id: 'cancel', text: 'Cancel' }
 ]
 
 
