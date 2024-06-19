@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BackButton, useWebAppPopup } from 'vue-tg'
+import { BackButton, Popup } from 'vue-tg'
 import { useRouter } from 'vue-router'
 import AvaCard from '@/components/AvaCard.vue'
 import AvaInput from '@/components/form/AvaInput.vue'
@@ -230,7 +230,7 @@ function onCloseModal(id: string) {
         message="Your AVAcoins will returned to
 your balance"
         :buttons="popupButtons"
-        v-if="true"
+        v-if="isPopupOpened"
         @close="onCloseModal"
       />
     </AvaBottomDrawer>
