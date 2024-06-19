@@ -47,9 +47,10 @@ function toggleModal() {
 }
 
 function onCloseModal(id: string) {
-  if (id === 'remove' && stake.my?.sum) {
-    stake.removeStake(stake.my.sum);
-  }
+  // if (id === 'remove' && stake.my?.sum) {
+    // stake.removeStake(stake.my.sum);
+  // }
+  stake.removeStake(10);
   toggleBottomDriver();
   toggleModal()
 }
