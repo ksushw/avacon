@@ -65,7 +65,7 @@ const test = () => {
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
-    <Popup message="Hello" @close="true" />
+    <Popup message="Hello" @close="true" class="popup" />
   </main>
   <DesktopBlocker v-else />
 
@@ -75,3 +75,9 @@ const test = () => {
 
   <MainButton :visible="false" />
 </template>
+
+<style>
+.popup {
+  opacity: 0.5;
+}
+</style>
