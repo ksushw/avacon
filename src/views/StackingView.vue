@@ -48,9 +48,10 @@ function toggleModal() {
 
 function onCloseModal(id: string) {
   if (id === 'remove' && stake.my?.sum) {
-    stake.removeStake(stake.my.sum)
+    stake.removeStake(stake.my.sum);
   }
-  isOpen.value = false;
+  toggleBottomDriver(false);
+  toggleModal()
 }
 </script>
 
