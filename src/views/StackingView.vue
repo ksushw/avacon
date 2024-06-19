@@ -229,7 +229,7 @@ function onCloseModal() {
 your balance"
         :buttons="popupButtons"
         @close="onCloseModal"
-        @popupClosed="isPopupOpened"
+        @popupClosed="true"
       />
     </AvaBottomDrawer>
   </div>
