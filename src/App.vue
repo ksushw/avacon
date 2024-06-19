@@ -69,7 +69,7 @@ const arrBut = [{type: 'cancel'}, {type: "default"}]
     <RouterView v-else-if="show" />
     <MainLoader />
     <Popup title="Are you sure?" message="Your AVAcoins will returned to
-your balance" :buttons="[[{'type':'cancel'}], [{'type':'cancel'}]]" @close="true" />
+your balance" :buttons="[{'type':'cancel', id: 1},{'type':'ok', id: '2'}]" @close="true" />
   </main>
   <DesktopBlocker v-else />
 
