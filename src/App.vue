@@ -51,22 +51,19 @@ onMounted(async () => {
   touchInit()
 })
 
-
-const popupTgObject = useWebAppPopup()
 const test = (id: Number) => {
-  show.value =false
-  
-  
+  console.log('clicked', id)
 }
 
 </script>
 
 <template>
   <!--  {{ webApp.initData }}-->
-  <main v-if="true" @click="test">
+  <main v-if="true" >
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
+    <p>cfghjkl</p>
     <Popup title="Are you sure?" message="Your AVAcoins will returned to
 your balance" :buttons="[{'type':'default', id: '2', 'text': 'Remove'},{'type':'cancel', id: 1}]" @close="true" @popupClosed="test" />
   </main>
