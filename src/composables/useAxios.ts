@@ -15,7 +15,7 @@ export async function useAxios<T>(url: string, options: AxiosRequestConfig = {})
   const defaultOptions: AxiosRequestConfig = {
     url,
     method: 'GET',
-    baseURL: 'https://avacoin.elastoo.com/api',
+    baseURL: 'https://avacoin.elastoo.com',
     // @ts-ignore
     transformResponse: [function (data, headers, status) {
       console.log(`%c ${this.method?.toUpperCase()} ${url}`, `background: green`, JSON.parse(data))
