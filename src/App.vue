@@ -53,14 +53,15 @@ onMounted(async () => {
 
 const popupTgObject = useWebAppPopup()
 const test = () => {
-  popupTgObject.showConfirm('ghjukiop', () => console.log(1))
   console.log('clicked')
+  popupTgObject.showConfirm('ghjukiop', () => console.log(1))
+  
 }
 </script>
 
 <template>
   <!--  {{ webApp.initData }}-->
-  <main v-if="true" @click="popupTgObject.showPopup">
+  <main v-if="true" @click="test">
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
