@@ -65,6 +65,7 @@ const test = () => {
     <TechnicalWorkBanner v-if="rootStore.technicalBannerShow" />
     <RouterView v-else-if="show" />
     <MainLoader />
+    <Popup message="Hello" @close="true" />
   </main>
   <DesktopBlocker v-else />
 
