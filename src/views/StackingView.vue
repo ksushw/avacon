@@ -171,7 +171,7 @@ function onCloseModal(id: string) {
       </AvaButton>
     </AvaCard>
 
-    <AvaBottomDrawer v-model="isOpen" class="market-drawer drawer" @close="toggleBottomDriver">
+    <AvaBottomDrawer v-model="isOpen" class="market-drawer drawer">
       <div class="drawer__title">Remove AvaCoin from staking</div>
       <AvaCard bg-color="#FFFFFF" class="mb-8">
         <div class="stacking__card-info">
