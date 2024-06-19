@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton, useWebAppPopup, Popup } from 'vue-tg'
+import { useWebAppTheme, useWebAppViewport, useWebApp, MainButton, useWebAppPopup , Popup } from 'vue-tg'
 import { useRootStore } from '@/stores/root'
 import { useNotificationStore } from '@/stores/notification'
 import { useAxios } from '@/composables/useAxios'
@@ -51,8 +51,9 @@ onMounted(async () => {
   touchInit()
 })
 
+const popup = useWebAppPopup()
 const test = (id: Number) => {
-  console.log('clicked', id)
+  popup.showAlert('message[, callback]')
 }
 
 </script>
@@ -65,7 +66,7 @@ const test = (id: Number) => {
     <MainLoader />
     <p>cfghjkl</p>
     <Popup title="Are you sure?" message="Your AVAcoins will returned to
-your balance" :buttons="[{'type':'default', id: '2', 'text': 'Remove'},{'type':'cancel', id: 1}]" @close="true" @popupClosed="test" />
+your balance" :buttons="[{'type':'default', id: 'remove', 'text': 'Remove'},{'type':'cancel', id: 'cancel'}]" @close="true" @popupClosed="test" />
   </main>
   <DesktopBlocker v-else />
 
