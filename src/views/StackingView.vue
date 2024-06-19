@@ -21,8 +21,9 @@ const stake = useStake()
 const root = useRootStore()
 
 const popupButtons = [
-  { type: 'default', id: 'remove', text: 'Remove' },
-  { type: 'cancel', id: 'cancel' }
+{ type: 'cancel', id: 'cancel', text: 'Cancel' },
+  { type: 'default', id: 'remove', text: 'Remove' }
+  
 ]
 
 
@@ -45,8 +46,10 @@ function toggleModal () {
   isPopupOpened.value = !isPopupOpened.value;
 }
 
-function onCloseModal() {
- stake.removeStake(32)
+function onCloseModal(id: string) {
+  if(id === 'remove') {
+    stake.removeStake()
+  }
 }
 </script>
 
