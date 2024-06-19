@@ -86,7 +86,7 @@ function onCloseModal(id: string) {
         </div>
       </div>
     </AvaCard>
-    <p class="stacking__remove-button" @click="() => toggleBottomDriver()">
+    <p class="stacking__remove-button" @click="toggleBottomDriver">
       Remove AVA from staking
     </p>
     <div class="stacking__header mt-24">Staking statistics</div>
