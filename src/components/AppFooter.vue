@@ -112,13 +112,13 @@ watch(() => booster.active, (val) => {
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="footer" @click="vibrate">
     <CongratulationsLeafsAnimation v-if="isAnimation" />
     <div class="footer__scroll">
       <div v-if="root.userLoading" class="footer__scroll--loader"></div>
       <nav class="footer__nav">
         <router-link v-for="nav of navs" :key="nav.title" :to="nav.path" :class="['footer__link']">
-          <div @click="vibrate">
+          <div >
             <img :src="nav.icon" :alt="nav.title">
             <span>{{ nav.title }}</span>
             <div v-if="nav?.badge" class="badge">1</div>
