@@ -1,0 +1,1 @@
+export const imageBaseUrl = 'https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images'

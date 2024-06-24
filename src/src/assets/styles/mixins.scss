@@ -1,0 +1,17 @@
+
+@mixin fadeInDownAnimation() {
+  animation-duration: 0.55s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(-2.7rem, 0, 1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
