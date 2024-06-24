@@ -18,6 +18,8 @@ import HistoryView from '@/views/HistoryView.vue';
 import StartMineView from '@/views/StartMineView.vue';
 import BuyEquipmentView from '@/views/BuyEquipmentView.vue';
 
+import avabetRoutes from './avabet'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -222,7 +224,12 @@ const router = createRouter({
       name: 'stacking',
       component: () => import('@/views/StackingView.vue'),
     },
-
+    {
+      path: '/okx',
+      name: 'okxConnect',
+      component: () => import('@/views/OkxConnectView.vue'),
+    },
+    ...avabetRoutes
   ]
 })
 

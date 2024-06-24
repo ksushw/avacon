@@ -6,6 +6,7 @@ export interface IUser {
   username: string
   first_name: string
   crypto_address: string
+  crypto_address_1: string
   last_name: string
   avatar_path: string
   referral_url: string

@@ -1,4 +1,5 @@
 import './assets/styles/main.scss'
+import './assets/styles/mixins.scss'
 if (import.meta.hot) import.meta.hot.accept(() => import.meta.hot?.invalidate())
 
 import { createApp } from 'vue'

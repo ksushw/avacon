@@ -4,7 +4,7 @@
       <div class="tasks__item__laptop">
         <img src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/slider/laptop.png" alt="laptop">
       </div>
-      <div/>
+      <div />
       <div class="tasks__item__info">
         <div class="title">AVA TASKS</div>
         <div class="subtitle">You have last chance to get more AVA tokens before listing</div>
@@ -30,19 +30,37 @@ import router from '@/router';
   max-height: 250px;
   margin-top: 35px;
 
+  @media (max-height: 500px) {
+    border-radius: 15px;
+    padding: 5px 15px;
+    height: 155px;
+    margin-bottom: 5px;
+  }
+
   &__item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
     position: relative;
 
+
+
     &__laptop {
       position: absolute;
       top: -100px;
       left: -180px;
 
+      @media (max-height: 500px) {
+        top: -76px;
+        left: -170px;
+      }
+
       img {
         width: 45%;
+
+        @media (max-height: 500px) {
+          width: 36%;
+        }
       }
     }
 
@@ -53,6 +71,11 @@ import router from '@/router';
       text-align: start;
       color: #000000;
       margin-bottom: 10px;
+
+      @media (max-height: 500px) {
+        font-size: 15px;
+        margin-bottom: 3px;
+      }
     }
 
     .subtitle {
@@ -62,11 +85,20 @@ import router from '@/router';
       letter-spacing: -0.02em;
       text-align: left;
       color: #515151;
+
+      @media (max-height: 500px) {
+        font-size: 11px;
+        line-height: 16px;
+      }
     }
 
-    &__img img{
+    &__img img {
       width: calc(100% + 20px);
       padding: 12px 0;
+
+      @media (max-height: 500px) {
+        padding: 3px 0;
+      }
     }
   }
 }

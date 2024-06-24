@@ -18,7 +18,7 @@ export const useStake = defineStore('stake', () => {
   async function getMyStaking() {
     try {
       my.value = await useAxios<IMyStaking>('/stake/')
-      hasStaking.value = my.value?.sum > 0
+      hasStaking.value = true;
     } catch (e) {
       console.log(e)
       hasStaking.value = false

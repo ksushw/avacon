@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import AvaLink from '@/components/AvaLink.vue'
 import AvaButton from '@/components/AvaButton.vue'
+import ProgressLine from '@/components/ProgressLine.vue'
 import { useStake } from '@/stores/stake'
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { useRootStore } from '@/stores/root';
 import moment from 'moment/moment';
 
@@ -12,6 +13,8 @@ const loading = ref(false);
 const now = moment().utc();
 const time = ref<string>();
 const endDate = moment().utc().hour(23).minute(59)
+const percent = ref<number>(0)
+let timerId: number = 0
 
 const takeStake = async () => {
   loading.value = true
@@ -40,12 +43,29 @@ function calculateTime() {
     ${minutes.toString().padStart(2, '0')}m`;
 }
 
-watch(now, () => {
-      time.value= calculateTime();
-    },
-    { immediate: true }
-);
 
+const calculatePercent = () => {
+  const minutesFromDayStart = (now.hours() * 60) + now.minutes();
+  const totalMinutesInDay = 24 * 60;
+  percent.value = Math.round((minutesFromDayStart / totalMinutesInDay) * 100);
+}
+
+watch(
+  now,
+  () => {
+    time.value = calculateTime();
+  },
+  { immediate: true }
+)
+
+onMounted(() => {
+  setTimeout(calculatePercent, 3000)
+  timerId = setInterval(calculatePercent, 60000)
+})
+
+onUnmounted(() => {
+  clearInterval(timerId)
+})
 </script>
 
 <template>
@@ -61,8 +81,9 @@ watch(now, () => {
           <div class="text-12" style="color: #CECECE">Pool APR 1m</div>
         </div>
       </div>
-      <AvaLink text="Staking stats" color="#F0C777" link="stacking" />
+      <AvaLink class="stacking-banner__link" text="Staking stats" color="#F0C777" link="stacking" />
     </div>
+    <ProgressLine v-if="stake.stats?.my_percent" :percent="percent" />
     <div class="stacking-banner__actions">
       <img src="@/assets/images/stacking/bag.png" alt="bag">
       <div>
@@ -73,13 +94,7 @@ watch(now, () => {
           {{ time }}
           to fill</div>
       </div>
-      <AvaButton
-          block
-          type="warning"
-          :disabled="!stake.my?.not_taken"
-          :loading="loading"
-          @click="takeStake"
-      >
+      <AvaButton block type="warning" :disabled="!stake.my?.not_taken" :loading="loading" @click="takeStake">
         Claim
       </AvaButton>
     </div>
@@ -92,6 +107,11 @@ watch(now, () => {
   border-radius: 24px;
   padding: 16px;
 
+  @media (max-height: 500px) {
+    border-radius: 15px;
+    padding: 5px;
+  }
+
   &__statistics {
     display: flex;
     align-items: center;
@@ -99,8 +119,17 @@ watch(now, () => {
     column-gap: 10px;
     margin-bottom: 16px;
 
+    @media (max-height: 500px) {
+      column-gap: 5px;
+      margin-bottom: 0px;
+    }
+
     img {
       width: 24px;
+
+      @media (max-height: 500px) {
+        width: 18px;
+      }
     }
 
     &__info {
@@ -115,18 +144,36 @@ watch(now, () => {
         line-height: 29.05px;
         text-align: left;
         color: #F0C777;
+
+        @media (max-height: 500px) {
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
     }
   }
 
+  &__link {
+    margin: 5px 0;
+  }
+
   &__actions {
+    margin-top: 16px;
     display: grid;
     align-items: center;
     grid-template-columns: 50px 1fr 1fr;
     column-gap: 10px;
 
+    @media (max-height: 500px) {
+      margin-top: 0px;
+    }
+
     img {
       width: 48px;
+
+      @media (max-height: 500px) {
+        width: 35px;
+      }
     }
 
     &__title {
@@ -134,13 +181,23 @@ watch(now, () => {
       font-weight: 500;
       line-height: 24.2px;
       margin-bottom: 4px;
+
+      @media (max-height: 500px) {
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
 
     &__time {
       font-size: 16px;
       font-weight: 400;
       line-height: 19.36px;
-      color: #CECECE
+      color: #CECECE;
+
+      @media (max-height: 500px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
     }
   }
 }

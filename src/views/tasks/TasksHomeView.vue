@@ -5,12 +5,21 @@ import AvaCard from '@/components/AvaCard.vue'
 import { useTasks } from '@/composables/useTasks'
 import moment from 'moment'
 import type { IQuest } from '@/types/tasks'
+import { onMounted } from 'vue';
+import { useWebAppHapticFeedback } from 'vue-tg'
+import AvaLink from '@/components/AvaLink.vue';
 
 const router = useRouter()
 
 const { quests, getQuests, loading } = useTasks()
 
+const hapticFeedback = useWebAppHapticFeedback()
+
 getQuests()
+
+const vibrate = () => {
+  hapticFeedback.notificationOccurred('success')
+}
 
 const isNew = (quest: IQuest) => {
   if (quest.begin_at) {
@@ -22,6 +31,13 @@ const isNew = (quest: IQuest) => {
   }
   return false
 }
+
+const isDev = import.meta.env?.VITE_USER_NODE_ENV === 'development'
+
+onMounted(() => {
+  // @ts-ignore
+  ;(adsbyslise=window.adsbyslise||[]).push({slot:"leaderboard"});window.adsbyslisesync&&window.adsbyslisesync();
+})
 </script>
 
 <template>
@@ -40,7 +56,19 @@ const isNew = (quest: IQuest) => {
       Complete tasks and get more AvaCoin tokens
     </div>
 
-    <router-link to="/tasks/partnership" class="partnership-link">
+    <div v-if="isDev">
+      <div class="adsbyslise-desk">
+        <ins
+            class="adsbyslise"
+            style="display:inline-block;width:728px;height:90px"
+            data-ad-slot="leaderboard"
+            data-ad-pub="pub-38"
+            data-ad-format="728x90"
+        ></ins>
+      </div>
+    </div>
+
+    <router-link v-else to="/tasks/partnership" class="partnership-link">
       <div class="image flex align-center">
         <img
           style="height: 45px"
@@ -64,12 +92,18 @@ const isNew = (quest: IQuest) => {
       <img class="star3" src="https://s3.timeweb.cloud/44e04f9b-avacoin/production/assets/images/icons/whie-star.svg" alt="star">
     </router-link>
 
+    <div v-if="isDev" class="partnership-block">
+      <div>Want partnership?</div>
+      <AvaLink text="Connect us" link="/tasks/partnership"/>
+    </div>
+
     <AvaCard :loading="loading">
       <div
         v-for="(quest, i) of quests"
         :key="i"
         class="task-item"
-        @click="router.push(`/tasks/${quest.id}`)"
+        @click="() => { vibrate(); router.push(`/tasks/${quest.id}`)}"
+        
       >
         <div class="icon" :style="`background-image: url(${quest.image_url})`"></div>
         <div>
@@ -100,6 +134,24 @@ const isNew = (quest: IQuest) => {
 </template>
 
 <style scoped lang="scss">
+.adsbyslise-desk {
+  max-width: 100%;
+
+  ins {
+    width: calc(100vw - 32px) !important;
+  }
+
+  &:deep(iframe){
+    width: calc(100vw - 32px);
+  }
+}
+
+.partnership-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .partnership-link {
   height: 52px;
   width: 100%;

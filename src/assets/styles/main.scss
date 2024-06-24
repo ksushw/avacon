@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "normalize.css";
 @import "vars";
+@import "mixins";
 
 body {
   font-family: 'Inter', sans-serif;
@@ -28,6 +29,7 @@ body {
   display: block !important;
 }
 .page {
+  @include fadeInDownAnimation();
   padding: 24px var(--page-horizontal-offset) 100px;
   overflow-y: auto;
   height: 100dvh;
@@ -94,12 +96,26 @@ input {
     background-position: 0 50%
   }
 }
-
+.text-right {
+  text-align: right;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
 .w-100 {
   width: 100%;
 }
 .flex {
   display: flex;
+}
+.flex-column {
+  flex-direction: column;
 }
 .align-center {
   align-items: center;
@@ -180,4 +196,7 @@ input {
 
 .grey-color {
   color: #7A7A7A;
+}
+.blue-color {
+  color: #007AFF;
 }

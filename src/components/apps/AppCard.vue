@@ -4,6 +4,7 @@ import type { IApp } from '@/types/apps'
 import { formatNumber } from '@/utils/formatNumber'
 import { useWebAppNavigation } from 'vue-tg'
 import { computed } from 'vue'
+import { useAxios } from '@/composables/useAxios';
 
 const { app } = defineProps<{
   app: IApp
@@ -17,6 +18,9 @@ const isTelegram = computed(() => {
 })
 
 async function clickHandler() {
+  await  useAxios(`/apps/visit/${app.id}/`, {
+    method: 'POST',
+  })
   if (isTelegram.value) {
     openTelegramLink(app.url)
   } else {
@@ -51,7 +55,7 @@ async function clickHandler() {
 
      <div class="top light-color text-12">
        <div>
-         Total players
+        Total users
          <div class="white-color text-14 mt-4">
            {{ formatNumber(app.gamers_count) }}
          </div>

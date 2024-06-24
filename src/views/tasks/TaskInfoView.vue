@@ -6,11 +6,17 @@ import ProfileIcon from '@/components/profile/ProfileIcon.vue'
 import AvaCard from '@/components/AvaCard.vue'
 import TaskItem from '@/components/tasks/TaskItem.vue'
 import { onMounted } from 'vue'
-import { BackButton } from 'vue-tg'
+import { BackButton, useWebAppHapticFeedback } from 'vue-tg'
 
 const router = useRouter()
 const route = useRoute()
 const { getQuest, quest, loading } = useTasks()
+
+const hapticFeedback = useWebAppHapticFeedback()
+
+const vibrate = () => {
+  hapticFeedback.notificationOccurred('success')
+}
 
 onMounted(async () => {
   await getQuest(Number(route.params.id))
@@ -45,6 +51,7 @@ onMounted(async () => {
         v-for="task of quest.tasks"
         :key="task.id"
         :task="task"
+        @click="vibrate"
       />
     </AvaCard>
   </div>

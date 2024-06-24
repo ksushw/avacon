@@ -33,7 +33,7 @@ export interface IListItem {
   type?: string
 }
 
-export type ButtonType = 'primary' | 'warning' | 'info' | 'white'
+export type ButtonType = 'primary' | 'warning' | 'info' | 'white' | 'green'
 
 export interface ProfileItem {
   title: string | number

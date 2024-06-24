@@ -17,7 +17,7 @@ stat.getTotals()
     <router-link to="/statistics" class="stat-total__action">
       Stats
       <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L5 5L1 9" stroke="#A3A3A3" stroke-width="1.5"/>
+        <path d="M1 1L5 5L1 9" stroke="#A3A3A3" stroke-width="1.5" />
       </svg>
     </router-link>
   </section>
@@ -32,7 +32,13 @@ stat.getTotals()
   padding: 8px 16px;
   color: #0E0E0E;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+
+  @media (max-height: 500px) {
+    padding: 3px 16px;
+    margin-bottom: 5px;
+  }
+
   &__action {
     font-size: 16px;
     color: #A3A3A3;
@@ -40,13 +46,24 @@ stat.getTotals()
     align-items: center;
     gap: 4px;
     text-decoration: none;
+
+    @media (max-height: 500px) {
+      font-size: 13px;
+    }
   }
+
   &__content {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 16px;
     font-weight: 500;
+
+    @media (max-height: 500px) {
+      gap: 12px;
+      font-size: 11px;
+    }
+
     img {
       height: 24px;
     }

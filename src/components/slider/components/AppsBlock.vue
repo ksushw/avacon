@@ -25,25 +25,50 @@ import router from '@/router';
   max-height: 250px;
   margin-top: 35px;
 
+  @media (max-height: 500px) {
+    border-radius: 15px;
+    padding: 5px 15px;
+    height: 155px;
+    margin-bottom: 5px;
+    overflow: hidden;
+  }
+
   &__item {
     display: grid;
     grid-template-columns: 150px 1fr;
     column-gap: 30px;
     margin-bottom: 18px;
 
+    @media (max-height: 500px) {
+      grid-template-columns: 130px 1fr;
+      margin-bottom: 3px;
+    }
+
+
     &__info {
       height: fit-content;
+
       img {
         width: 150px;
+
+        @media (max-height: 500px) {
+          width: 120px;
+        }
       }
     }
 
     &__icons {
       height: fit-content;
+
       img {
         width: calc(100vw - 170px);
         max-height: 170px;
         margin-top: -16px;
+
+        @media (max-height: 500px) {
+          max-height: 114px;
+          margin-top: 0px;
+        }
       }
     }
   }

@@ -23,10 +23,13 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use "@/assets/styles/mixins.scss" as *;
+
 .ava-card {
   border-radius: var(--card-border-radius);
   background: var(--card-background);
   overflow: hidden;
+  @include fadeInDownAnimation();
 
   &__header {
     border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;

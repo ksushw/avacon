@@ -16,6 +16,9 @@ import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import SocialButton from '@/components/profile/SocialButton.vue';
 import VerificationIcon from '@/components/icons/VerificationIcon.vue';
 import ConnectWallet from '@/components/profile/ConnectWallet.vue';
+import OkxWalletConnect from '@/components/profile/OkxWalletConnect.vue'
+
+const isDev = import.meta.env?.VITE_USER_NODE_ENV === 'development'
 
 const root = useRootStore()
 const router = useRouter()
@@ -116,6 +119,8 @@ const profileCards = computed<ProfileItem[]>(() => (
     </AvaCard>
 
     <ConnectWallet />
+
+    <OkxWalletConnect v-if="isDev" />
 
 <!--    <div class="profile__info-balance mt-30">-->
 <!--      <div>Total balance:</div>-->

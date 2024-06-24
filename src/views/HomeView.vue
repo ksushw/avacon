@@ -7,6 +7,7 @@ import { useSkinStore, defaultSkin } from '@/stores/skin'
 import { BackButton } from 'vue-tg'
 import GoldAndDust from '@/components/booster/GoldAndDust.vue'
 import { useBoosterStore } from '@/stores/booster'
+import WalletButton  from '@/components/WalletButton.vue'
 import { onMounted, onUnmounted } from 'vue'
 import StatisticsTotal from '@/components/statistics/StatisticsTotal.vue'
 import StackingBanner from '@/components/stacking/StackingBanner.vue';
@@ -89,10 +90,10 @@ onUnmounted(() => {
     ></div>
     <div class="home__body">
       <BoosterActivate v-if="boosterStore.availableBoosters.length" />
-
+      <WalletButton />
       <div class="home__content">
 <!--        <ProgressBar />-->
-        <StatisticsTotal style="margin-bottom: 30px;" />
+        <StatisticsTotal  />
         <div>
 <!--          <BannerInfo />-->
 
@@ -126,6 +127,10 @@ onUnmounted(() => {
   box-sizing: border-box;
   overflow: hidden;
   user-select: none;
+
+  @media (max-height: 500px) {
+     padding: var(--page-top-offset) var(--page-horizontal-offset) 5px;
+  }
   &__content {
     position: relative;
   }

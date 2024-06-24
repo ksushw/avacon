@@ -2,7 +2,7 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { useWebApp } from 'vue-tg';
 import { useRouter } from 'vue-router'
 
-export async function useAxios<T>(url: string, options: AxiosRequestConfig = {}): Promise<T> {
+export async function useAxios<T>(url: string, options: AxiosRequestConfig = {}, otherToken?: string): Promise<T> {
 
   const webApp = useWebApp()
   const router = useRouter()
@@ -11,11 +11,14 @@ export async function useAxios<T>(url: string, options: AxiosRequestConfig = {})
   if (import.meta.env?.VITE_INIT_DATA) {
     token = import.meta.env?.VITE_INIT_DATA
   }
+  if (otherToken) {
+    token = otherToken
+  }
 
   const defaultOptions: AxiosRequestConfig = {
     url,
     method: 'GET',
-    baseURL: 'https://avacoin.elastoo.com/api',
+    baseURL: import.meta.env.VITE_API_URL,
     // @ts-ignore
     transformResponse: [function (data, headers, status) {
       console.log(`%c ${this.method?.toUpperCase()} ${url}`, `background: green`, JSON.parse(data))

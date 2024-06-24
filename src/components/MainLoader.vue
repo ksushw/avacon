@@ -36,7 +36,7 @@ if (import.meta.env?.VITE_MODE !== 'local') {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 11;
+  z-index: 31;
   background-color: var(--body-background);
   display: flex;
   flex-direction: column;

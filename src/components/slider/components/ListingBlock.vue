@@ -12,5 +12,12 @@
   border-radius: 24px;
   max-height: 250px;
   margin-top: 35px;
+
+  @media (max-height: 500px) {
+    border-radius: 15px;
+    height: 155px;
+    background-size: 100%;
+    margin-bottom: 5px;
+  }
 }
 </style>

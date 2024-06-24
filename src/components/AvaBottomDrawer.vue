@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   modelValue: boolean
+  bgColor?: string
 }>()
 
 const emits = defineEmits<{
@@ -18,7 +19,7 @@ const close = () => {
   <Transition name="fade">
     <section v-if="modelValue" class="drawer">
       <div class="drawer__background" @click="close"></div>
-      <div class="drawer__body">
+      <div class="drawer__body" :style="{ backgroundColor: bgColor }">
         <div class="drawer__close" @click="close">Close</div>
         <slot></slot>
       </div>

@@ -14,7 +14,7 @@ import moment from 'moment'
 import { useRootStore } from '@/stores/root'
 import { formatNumberCommas } from '@/utils/formatNumber'
 
-const isOpen = ref<boolean>(false)
+const isDriverOpen = ref<boolean>(false)
 const isPopupOpened = ref<boolean>(false)
 const router = useRouter()
 const stake = useStake()
@@ -22,10 +22,8 @@ const root = useRootStore()
 
 const popupButtons = [
   { type: 'default', id: 'cancel', text: 'Cancel' },
-  { type: 'default', id: 'remove', text: 'Remove' },
-
+  { type: 'default', id: 'remove', text: 'Remove' }
 ]
-
 
 Promise.all([stake.getMyStaking(), stake.getTodayStaking()])
 
@@ -39,7 +37,7 @@ async function stakeHandle() {
 }
 
 function toggleBottomDriver() {
-  isOpen.value = !isOpen.value
+  isDriverOpen.value = !isDriverOpen.value
 }
 
 function toggleModal() {
@@ -47,12 +45,11 @@ function toggleModal() {
 }
 
 function onCloseModal(id: string) {
-  // if (id === 'remove' && stake.my?.sum) {
-    // stake.removeStake(stake.my.sum);
-  // }
-  stake.removeStake(10);
-  toggleBottomDriver();
+  if (id === 'remove' && stake.my?.sum) {
+    stake.removeStake(stake.my.sum)
+  }
   toggleModal()
+  toggleBottomDriver()
 }
 </script>
 
@@ -81,15 +78,15 @@ function onCloseModal(id: string) {
           <div>
             <div class="content-title grey">Stake from:</div>
             <div class="content-subtitle grey">
-              {{ moment(stake.my?.staked_at).format('DD.MM.YYYY') }}
+              {{ stake.my?.sum === 0 ? '-' : moment(stake.my?.staked_at).format('DD.MM.YYYY') }}
             </div>
           </div>
         </div>
       </div>
     </AvaCard>
-    <p class="stacking__remove-button" @click="toggleBottomDriver">
+    <div v-if="stake.my?.sum" class="stacking__remove-button" @click="toggleBottomDriver">
       Remove AVA from staking
-    </p>
+    </div>
     <div class="stacking__header mt-24">Staking statistics</div>
     <div class="stacking__statistics">
       <div class="stacking__statistics__item">
@@ -130,7 +127,7 @@ function onCloseModal(id: string) {
         <div class="stacking__statistics-users__item-subtitle flex align-center gap-5">
           <span class="mt-2">{{
             stake.stats?.all_stakes_sum?.toLocaleString('en-EN') || '0'
-            }}</span>
+          }}</span>
           <img v-if="stake.stats?.all_stakes_sum" src="@/assets/images/mini-coin.png" alt="coin" />
         </div>
       </div>
@@ -161,10 +158,20 @@ function onCloseModal(id: string) {
     </AvaCard>
 
     <AvaCard v-if="root.user" bg-color="#FFFFFF">
-      <AvaInput v-model="sum" type="text" input-color="#F0EFF5" label="Set quantity your AvaCoin to stake"
-        hint="500 AvaCoin top up staking balance" />
-      <AvaButton block :disabled="root.user.tokens < sum || sum < 500" :loading="loading" vibrationType="success"
-        @click="stakeHandle">
+      <AvaInput
+        v-model="sum"
+        type="text"
+        input-color="#F0EFF5"
+        label="Set quantity your AvaCoin to stake"
+        hint="500 AvaCoin top up staking balance"
+      />
+      <AvaButton
+        block
+        :disabled="root.user.tokens < sum || sum < 500"
+        :loading="loading"
+        vibrationType="success"
+        @click="stakeHandle"
+      >
         <div class="button-content">
           Stake {{ sum }} AvaCoin
           <MoneyIcon />
@@ -172,7 +179,7 @@ function onCloseModal(id: string) {
       </AvaButton>
     </AvaCard>
 
-    <AvaBottomDrawer v-model="isOpen" class="market-drawer drawer">
+    <AvaBottomDrawer v-model="isDriverOpen" class="market-drawer drawer">
       <div class="drawer__title">Remove AvaCoin from staking</div>
       <AvaCard bg-color="#FFFFFF" class="mb-8">
         <div class="stacking__card-info">
@@ -211,11 +218,23 @@ function onCloseModal(id: string) {
         </div>
       </AvaCard>
       <AvaCard bg-color="#FFFFFF" class="mb-8">
-        <AvaButton class="drawer__button" type="warning" vibration-type="warning" @click="toggleModal">Remove AVAcoin
+        <AvaButton
+          class="drawer__button"
+          type="warning"
+          vibration-type="warning"
+          @click="toggleModal"
+        >
+          Remove AVAcoin
         </AvaButton>
       </AvaCard>
-      <Popup title="Are you sure?" message="Your AVAcoins will returned to
-your balance" :buttons="popupButtons" v-if="isPopupOpened" @close="onCloseModal" />
+      <Popup
+        v-if="isPopupOpened"
+        title="Are you sure?"
+        message="Your AVAcoins will returned to
+your balance"
+        :buttons="popupButtons"
+        @close="onCloseModal"
+      />
     </AvaBottomDrawer>
   </div>
 </template>
