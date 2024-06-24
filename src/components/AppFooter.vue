@@ -117,10 +117,12 @@ watch(() => booster.active, (val) => {
     <div class="footer__scroll">
       <div v-if="root.userLoading" class="footer__scroll--loader"></div>
       <nav class="footer__nav">
-        <router-link v-for="nav of navs" :key="nav.title" :to="nav.path" :class="['footer__link']" @click="vibrate">
-          <img :src="nav.icon" :alt="nav.title">
-          <span>{{ nav.title }}</span>
-          <div v-if="nav?.badge" class="badge">1</div>
+        <router-link v-for="nav of navs" :key="nav.title" :to="nav.path" :class="['footer__link']">
+          <span @click="vibrate">
+            <img :src="nav.icon" :alt="nav.title">
+            <span>{{ nav.title }}</span>
+            <div v-if="nav?.badge" class="badge">1</div>
+          </span>
         </router-link>
       </nav>
     </div>

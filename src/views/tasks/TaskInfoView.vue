@@ -47,12 +47,9 @@ onMounted(async () => {
       <div v-if="quest.tasks?.length === 0" class="text-center">
         No tasks
       </div>
-      <TaskItem
-        v-for="task of quest.tasks"
-        :key="task.id"
-        :task="task"
-        @click="vibrate"
-      />
+      <div @click="vibrate">
+        <TaskItem v-for="task of quest.tasks" :key="task.id" :task="task" />
+      </div>
     </AvaCard>
   </div>
 </template>
@@ -63,6 +60,7 @@ onMounted(async () => {
     margin-top: 6px;
     margin-bottom: 16px;
   }
+
   .text {
     color: #E9E9E9;
     margin-bottom: 23px;
